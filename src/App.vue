@@ -22,7 +22,7 @@
           </div>
         </div>
       </nav>
-      <div class="container mx-auto my-5">
+      <div class="container mx-auto my-1 md:my-5">
         <router-view></router-view>
       </div>
     </div>

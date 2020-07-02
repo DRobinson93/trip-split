@@ -1,9 +1,9 @@
 <template>
-    <div class="pl-1">
+    <div class="pl-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="round">
             Round
         </label>
-        <div class="flex items-center  py-2">
+        <div class="flex items-center">
             <button type="button" class="btn-l" @click="btnClick(1)">Down</button>
             <button type="button" class="btn-r" @click="btnClick(0)">Up</button>
         </div>

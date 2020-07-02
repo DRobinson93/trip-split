@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-lg  border border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center">
+  <div class="bg-white rounded-lg  border border-gray-400 p-2 md:p-4 px-3 py-5 md:py-10 bg-gray-200 flex justify-center">
     <div class="w-full max-w-md md:max-w-sm">
       <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
@@ -7,7 +7,7 @@
             Total $
           </label>
           <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                 id="totalWithoutTip" pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01"
+                 id="totalWithoutTip" :pattern="numbPattern" type="number" step="0.01"
                  placeholder="Total $" v-model.number="totalWithoutTip">
         </div>
         <div class="mb-4">
@@ -18,21 +18,30 @@
             <button type="button" @click="decTip" class="btn-l">
               -
             </button>
-            <div class="border p-4">
-              {{formatNumber(tipPercent)}}%
+            <div class="border p-4 inline">
+              <input type="number" class="w-3/4" v-model.number="tipPercent">
+              <span class="float-right">%</span>
             </div>
             <button type="button" @click="incTip" class="btn-r">
               +
             </button>
           </div>
         </div>
-        <div class="inline-flex">
-          <DisplayOnlyValue label="+ Tip Amount $" :val="tipAmount" />
+        <div class="flex mb-4">
+          <div class="w-1/2">
+            <DisplayOnlyValue label="+ Tip Amount $" :val="tipAmount" />
+          </div>
+          <div class="w-1/2">
           <RoundBtns @down="setTipAmount(roundDown(tipAmount))" @up="setTipAmount(roundUp(tipAmount))" />
+          </div>
         </div>
-        <div class="inline-flex">
-          <DisplayOnlyValue label="= Total $ WITH TIP" :val="totalWithTip" />
-          <RoundBtns @down="roundTotalDown" @up="roundTotalUp" />
+        <div class="flex mb-4">
+          <div class="w-1/2">
+            <DisplayOnlyValue label="= Total $ WITH TIP" :val="totalWithTip" />
+          </div>
+          <div class="w-1/2">
+            <RoundBtns @down="roundTotalDown" @up="roundTotalUp" />
+          </div>
         </div>
       </form>
     </div>
@@ -65,8 +74,9 @@
     },
     data: function () {
       return {
+        numbPattern:'^\\d*(\\.\\d{0,2})?$',
         tipPercent: 15,
-        totalWithoutTip: 0,
+        totalWithoutTip: '',
       }
     },
     methods: {
