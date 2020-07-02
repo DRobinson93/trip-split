@@ -4,7 +4,7 @@
       {{label}}
     </label>
     <div class="flex items-center border-b border-b-2 border-teal-500 py-2" id="valDiv">
-      <input disabled type="number" :value="val">
+      {{val}}
     </div>
   </div>
 </template>
