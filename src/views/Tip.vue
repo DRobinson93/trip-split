@@ -7,7 +7,7 @@
             Total $
           </label>
           <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                 id="totalWithoutTip" pattern="\d*" type="number" step="0.01"
+                 id="totalWithoutTip" pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01"
                  placeholder="Total $" v-model.number="totalWithoutTip">
         </div>
         <div class="mb-4">
