@@ -23,13 +23,48 @@
         </div>
       </nav>
       <div class="container mx-auto my-1 md:my-5">
-        <router-view></router-view>
+        <div class="bg-white rounded-lg  border border-gray-400 p-2 md:p-4 px-3 py-5 md:py-10 bg-gray-200 flex justify-center">
+          <router-view></router-view>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
+<style>
+  .formSmParent{
+    @apply w-full max-w-md
+  }
+  @screen md {
+    .formSmParent{
+      @apply max-w-sm
+    }
+  }
+  .formSm{
+    @apply bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4
+  }
+  .shadowInput{
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight
+  }
+  .shadowInput :focus{
+    @apply outline-none shadow-outline
+  }
+  .btn-r {
+    @apply bg-green-300 font-bold p-3 rounded-r
+  }
+  .btn-r :hover{
+    @apply bg-green-400
+  }
+  .btn-l {
+    @apply bg-red-300 font-bold p-3 rounded-l
+  }
+  .btn-l :hover{
+    @apply bg-red-400
+  }
+</style>
+
 <script>
+
   export default {
     data: function () {
       return {

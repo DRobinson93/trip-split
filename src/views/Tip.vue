@@ -1,67 +1,50 @@
 <template>
-  <div class="bg-white rounded-lg  border border-gray-400 p-2 md:p-4 px-3 py-5 md:py-10 bg-gray-200 flex justify-center">
-    <div class="w-full max-w-md md:max-w-sm">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="totalWithoutTip">
-            Total $
-          </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                 id="totalWithoutTip" :pattern="numbPattern" type="number" step="0.01"
-                 placeholder="Total $" v-model.number="totalWithoutTip">
+  <div class="formSmParent">
+    <form class="formSm">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="totalWithoutTip">
+          Total $
+        </label>
+        <input class="shadowInput"
+               id="totalWithoutTip" :pattern="numbPattern" type="number" step="0.01"
+               placeholder="Total $" v-model.number="totalWithoutTip">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="tipPercent">
+          Tip %
+        </label>
+        <div class="flex items-center  py-2" id="tipPercent">
+          <button type="button" @click="decTip" class="btn-l">
+            -
+          </button>
+          <div class="border p-4 inline">
+            <input type="number" class="w-3/4" v-model.number="tipPercent">
+            <span class="float-right">%</span>
+          </div>
+          <button type="button" @click="incTip" class="btn-r">
+            +
+          </button>
         </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="tipPercent">
-            Tip %
-          </label>
-          <div class="flex items-center  py-2" id="tipPercent">
-            <button type="button" @click="decTip" class="btn-l">
-              -
-            </button>
-            <div class="border p-4 inline">
-              <input type="number" class="w-3/4" v-model.number="tipPercent">
-              <span class="float-right">%</span>
-            </div>
-            <button type="button" @click="incTip" class="btn-r">
-              +
-            </button>
-          </div>
+      </div>
+      <div class="flex mb-4">
+        <div class="w-1/2">
+          <DisplayOnlyValue label="+ Tip Amount $" :val="tipAmount" />
         </div>
-        <div class="flex mb-4">
-          <div class="w-1/2">
-            <DisplayOnlyValue label="+ Tip Amount $" :val="tipAmount" />
-          </div>
-          <div class="w-1/2">
-          <RoundBtns @down="setTipAmount(roundDown(tipAmount))" @up="setTipAmount(roundUp(tipAmount))" />
-          </div>
+        <div class="w-1/2">
+        <RoundBtns @down="setTipAmount(roundDown(tipAmount))" @up="setTipAmount(roundUp(tipAmount))" />
         </div>
-        <div class="flex mb-4">
-          <div class="w-1/2">
-            <DisplayOnlyValue label="= Total $ WITH TIP" :val="totalWithTip" />
-          </div>
-          <div class="w-1/2">
-            <RoundBtns @down="roundTotalDown" @up="roundTotalUp" />
-          </div>
+      </div>
+      <div class="flex mb-4">
+        <div class="w-1/2">
+          <DisplayOnlyValue label="= Total $ WITH TIP" :val="totalWithTip" />
         </div>
-      </form>
-    </div>
+        <div class="w-1/2">
+          <RoundBtns @down="roundTotalDown" @up="roundTotalUp" />
+        </div>
+      </div>
+    </form>
   </div>
 </template>
-
-<style>
-  .btn-r {
-    @apply bg-green-300 font-bold p-3 rounded-r
-  }
-  .btn-r :hover{
-    @apply bg-green-400
-  }
-  .btn-l {
-    @apply bg-red-300 font-bold p-3 rounded-l
-  }
-  .btn-l :hover{
-    @apply bg-red-400
-  }
-</style>
 
 <script>
   import DisplayOnlyValue from '../components/DisplayOnlyValue.vue';
@@ -99,9 +82,6 @@
       },
       roundUp(num){
         return Math.ceil(num);
-      },
-      formatNumber: function(num){
-        return Math.round(num * 100) / 100;
       },
       incTip: function(){
         this.tipPercent++;
