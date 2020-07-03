@@ -82,7 +82,7 @@ Vue.mixin({
       return Math.round(num * 100) / 100;
     },
   },
-  computed: { //todo is this needed? can hyou just call the getter ?
+  computed: {
     idAndAmountOwes: function () {
       return store.getters.idAndAmountOwes;
     }
