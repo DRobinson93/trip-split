@@ -13,11 +13,14 @@
         </div>
         <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
           <div class="text-sm sm:flex-grow">
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            <a href="#responsive-header" class="navLink">
               <router-link to="/">Home</router-link>
             </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            <a href="#responsive-header" class="navLink">
               <router-link to="/tip">Tip</router-link>
+            </a>
+            <a href="#responsive-header" class="navLink">
+              <router-link to="/history">History</router-link>
             </a>
           </div>
         </div>
@@ -28,10 +31,21 @@
         </div>
       </div>
     </div>
+    <notifications group="foo" />
   </div>
 </template>
 
 <style>
+  .navLink{
+    @apply block mt-4 text-teal-200 mr-4
+  }.navLink :hover{
+    @apply text-white
+  }
+   @screen lg {
+     .navLink {
+       @apply mt-0 inline-block
+     }
+   }
   .formSmParent{
     @apply w-full max-w-md
   }
@@ -60,6 +74,21 @@
   }
   .btn-l :hover{
     @apply bg-red-400
+  }
+  .btn-elevated{
+    @apply bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow
+  }
+  .btn-elevated :hover{
+    @apply bg-gray-100
+  }
+  .custSelect{
+    @apply block appearance-none w-full bg-white border border-gray-400 px-4 py-2 pr-8 rounded shadow leading-tight
+  }
+  .custSelect:focus{
+    @apply outline-none shadow-outline
+  }
+  .custSelect:hover{
+    @apply border-gray-500
   }
 </style>
 

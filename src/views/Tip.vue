@@ -57,7 +57,6 @@
     },
     data: function () {
       return {
-        numbPattern:'^\\d*(\\.\\d{0,2})?$',
         tipPercent: 15,
         totalWithoutTip: '',
       }

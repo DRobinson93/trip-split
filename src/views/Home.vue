@@ -29,7 +29,12 @@ export default {
     },
   methods: {
     updateName(index, value) {
-      this.$store.commit('updateName', {val:value, index:index})
+        if(value === ''){
+            this.error('Name can not be blank')
+            return;
+        }
+        this.$store.commit('updateName', {val:value, index:index})
+        this.success('Name Saved')
     },
   }
 }
